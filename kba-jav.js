@@ -12,6 +12,8 @@ const AssignmentGroup = {
     {id: 3, name: "Code the World", due_at: "3156-11-15", points_possible: 500}
   ]
 };
+let assignHow = AssignmentGroup.assignments;
+console.log(assignHow);
 
 const LearnerSubmissions = [
   {learner_id: 125, assignment_id: 1, submission: {Submitted_at: "2023-01-25", score: 47}},
@@ -21,6 +23,24 @@ const LearnerSubmissions = [
   {learner_id: 132, assignment_id: 2, submission: {Submitted_at: "2023-03-07", score: 140}}
 ];
   
+const scoresByLearner = {};
+
+LearnerSubmissions.forEach(function(entry) {
+  const learnerId = entry.learner_id;
+  const score = entry.submission.score;
+
+  if (scoresByLearner[learnerId]) {
+    scoresByLearner[learnerId].push(score);
+  } else {
+    scoresByLearner[learnerId] = [score];
+  }
+});
+
+console.log(scoresByLearner);
+
+let sum = scoresByLearner.score.reduce();
+console.log(sum);
+
   function getLearnerData(course, ag, submissions) {
     // here, we would process this data to achieve the desired result.
     const result = [
@@ -46,3 +66,4 @@ const LearnerSubmissions = [
   
   console.log(result);
   
+ // [] = an array  {} = an Object AssignmentGroup = {object[array of{objects}]}  LearnerSumbmissions = [array of{objects{objects in an object}}]
